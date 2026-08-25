@@ -6,7 +6,7 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import VerifiedIcon from '@mui/icons-material/Verified';
-import { XIcon, ExternalIcon } from "../components/Icons";
+import { ExternalIcon } from "../components/Icons";
 import { useForm, ValidationError } from "@formspree/react";
 
 function TiltIcon({ children }: { children: React.ReactNode }) {
@@ -18,26 +18,18 @@ function TiltIcon({ children }: { children: React.ReactNode }) {
 }
 
 export default function Home() {
-  const [dark, setDark] = useState<boolean>(false);
-  const [mounted, setMounted] = useState(false);
+  const [dark, setDark] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
+    try { return localStorage.getItem("theme") === "dark"; } catch { return false; }
+  });
   const nameRef = useRef<HTMLInputElement | null>(null);
   const [formState, formspreeSubmit] = useForm("mzepljkz");
 
   useEffect(() => {
     if (dark) document.documentElement.classList.add("dark");
     else document.documentElement.classList.remove("dark");
-    if (mounted) {
-      try { localStorage.setItem("theme", dark ? "dark" : "light"); } catch (e) {}
-    }
+    try { localStorage.setItem("theme", dark ? "dark" : "light"); } catch {}
   }, [dark]);
-
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem('theme');
-      if (stored === 'dark') setDark(true);
-    } catch (e) {}
-    setMounted(true);
-  }, []);
 
   function toggleTheme() {
     setDark((s) => !s);
@@ -45,25 +37,18 @@ export default function Home() {
 
   const experience = [
     {
-      range: "2025 – Present",
-      role: "Software Engineer",
+      range: "Dec 2025 – Present",
+      role: "Junior Software Engineer",
       company: 'UAB "Totemas"',
       logo: "/logos/totemas.png",
-      desc: 'Junior Software Engineer playing a core role in frontend development using React and TypeScript, alongside maintaining internal CRM and WordPress platforms essential to company operations.',
+      desc: 'Develop and maintain production web applications and internal CRM systems using React and TypeScript, including production debugging, refactoring, WordPress customization and collaborative Git/Gitea workflows.',
     },
     {
-      range: "2025 – 2025",
-      role: "Software Engineer – Intern",
+      range: "Sep 2025 – Dec 2025",
+      role: "Software Engineer Intern",
       company: 'UAB "Totemas"',
       logo: "/logos/totemas.png",
-      desc: 'Supported frontend development on production web applications, gaining hands-on experience with React, TypeScript, and Git workflows in a team environment.',
-    },
-    {
-      range: "2022 – 2024",
-      role: "Editor in Chief",
-      company: "Posterscoop",
-      logo: "/logos/PosterScoop.jpg",
-      desc: 'Led the editing team, designed posters, logos.',
+      desc: 'Supported frontend development on production web applications using React and TypeScript while gaining hands-on experience with professional Git/Gitea workflows.',
     },
   ];
 
@@ -137,9 +122,9 @@ export default function Home() {
             <h1 className="text-xl font-semibold profile-title">Md Nahidul Islam</h1>
             <VerifiedIcon aria-hidden style={{ fontSize: 16 }} />
           </div>
-          <div className="text-sm text-gray-500 mt-1 role-sub">Software Engineer</div>
+          <div className="text-sm text-gray-500 mt-1 role-sub">Junior Software Engineer | Software Engineering Student</div>
           <p className="max-w-2xl text-left mt-4 text-sm leading-6 text-gray-600 intro-paragraph">
-            Hey, I’m Nahid. I build thoughtful front-end experiences and internal tools using React and TypeScript. I prefer calm, focused interfaces that solve real product problems.
+            Hey, I’m Nahid. I’m a Software Engineering student at Vilnius University and a Junior Software Engineer working with production web applications and internal systems. My interests span software engineering, automation, robotics and data-driven systems.
           </p>
         </section>
 
@@ -179,23 +164,72 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="mb-8 education-text">
+          <div className="micro-label mb-3">EDUCATION</div>
+          <div className="space-y-4">
+            <div className="flex items-start gap-6">
+              <div className="w-28 text-sm text-gray-500 date-range">Sep 2024 – Jan 2028</div>
+              <div className="flex-1">
+                <div className="text-sm flex items-center gap-2">
+                  <span className="font-medium role-title">Vilnius University</span>
+                </div>
+                <div className="text-sm text-gray-500 mt-1 desc">BSc in Software Engineering · Robotics Systems</div>
+                <div className="text-sm text-gray-500 mt-1 desc">Incentive Scholarship Awardee in 4 semesters</div>
+              </div>
+            </div>
+            <div className="flex items-start gap-6">
+              <div className="w-28 text-sm text-gray-500 date-range">Sep 2025 – Jun 2026</div>
+              <div className="flex-1">
+                <div className="text-sm flex items-center gap-2">
+                  <span className="font-medium role-title">University of Graz</span>
+                </div>
+                <div className="text-sm text-gray-500 mt-1 desc">16 ECTS Micro-Degree in Artificial Intelligence and Society</div>
+                <div className="text-sm text-gray-500 mt-1 desc">Developed a machine-learning pipeline for skin-disease classification and compared Random Forest, ResNet18 and EfficientNet-B0 across 18 disease classes.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-8 skills-text">
+          <div className="micro-label mb-3">SKILLS</div>
+          <div className="space-y-4 text-sm text-gray-600">
+            <div>
+              <span className="font-medium text-gray-700">Languages:</span>{' '}
+              <span>TypeScript · JavaScript · Python · SQL · HTML5 · CSS3</span>
+            </div>
+            <div>
+              <span className="font-medium text-gray-700">Frameworks & Platforms:</span>{' '}
+              <span>React · Next.js · NestJS · Node.js · Vite · WordPress</span>
+            </div>
+            <div>
+              <span className="font-medium text-gray-700">Infrastructure & Tools:</span>{' '}
+              <span>PostgreSQL · Prisma · Redis/BullMQ · SQLite · Docker · Git · GitHub Actions · Playwright · Vitest</span>
+            </div>
+            <div>
+              <span className="font-medium text-gray-700">Spoken Languages:</span>{' '}
+              <span>English: Fluent · Bengali: Native</span>
+            </div>
+          </div>
+        </section>
+
         <section className="mb-8 work-text">
           <div className="micro-label mb-3">WORK</div>
-          <div className="text-sm text-gray-600 mb-4 section-subtitle">I can only show a subset of my work here due to NDAs.</div>
+          <div className="text-sm text-gray-600 mb-4 section-subtitle">Selected projects and platforms.</div>
 
           <div className="card-bg p-2">
             {[
-              {title: 'PosterScoop', desc: 'Website', year: '2025', url: 'https://github.com/wnzid/PosterScoop-main'},
-              {title: 'PowerBI-Dashboard', desc: 'Website', year: '2025', url: 'https://github.com/wnzid/PowerBI-Dashboard'},
-              {title: 'JTrack', desc: 'Website', year: '2025', url: 'https://github.com/wnzid/JTrack'}
+              {title: 'RAQI', desc: 'Full-Stack E-Commerce Platform', tech: 'Next.js · NestJS · TypeScript · PostgreSQL · Prisma · Redis/BullMQ · Docker', year: '—', url: 'https://github.com/wnzid/raqi'},
+              {title: 'MediEase', desc: 'Healthcare Management Platform', tech: 'Next.js · React · TypeScript · Supabase · Tailwind CSS', year: '—', url: 'https://github.com/wnzid/mediease'},
+              {title: 'JTrack', desc: 'Data Pipeline & Analytics Dashboard', tech: 'Python · Flask · SQLite · REST APIs · Excel ETL · SharePoint', year: '—', url: 'https://github.com/wnzid/JTrack'}
             ].map((p, i) => (
               <a key={i} href={p.url} target="_blank" rel="noopener noreferrer" className="block px-4 py-3 hover:bg-black/5 transition-colors" style={{textDecoration:'none'}}>
-                <div className="flex items-center justify-between">
-                  <div>
+                <div className="flex items-center justify-between gap-4">
+                  <div className="min-w-0">
                     <div className="font-medium text-[16px]">{p.title}</div>
                     <div className="desc text-gray-500 mt-1">{p.desc}</div>
+                    <div className="text-[11px] text-gray-500 mt-1 break-words">{p.tech}</div>
                   </div>
-                  <div className="text-right text-sm text-gray-500">{p.year}</div>
+                  <div className="text-right text-sm text-gray-500 whitespace-nowrap">{p.year}</div>
                 </div>
               </a>
             ))}
@@ -239,13 +273,13 @@ export default function Home() {
         <section className="mb-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div className="sm:col-span-2">
             <nav className="contact-list" aria-label="Contact links">
-              <a href="mailto:mdnahidulislam@gmail.com" className="contact-row">
+              <a href="mailto:mdnahidulislam1906@gmail.com" className="contact-row">
                 <div className="left">
                   <MailOutlineIcon className="icon" />
                   <span className="label">Email</span>
                 </div>
                 <div className="right">
-                  <span className="detail">mdnahidulislam@gmail.com</span>
+                  <span className="detail">mdnahidulislam1906@gmail.com</span>
                   <ExternalIcon />
                 </div>
               </a>
@@ -253,7 +287,7 @@ export default function Home() {
               <a href="https://github.com/wnzid" target="_blank" rel="noopener noreferrer" className="contact-row">
                 <div className="left">
                   <GitHubIcon className="icon" />
-                  <span className="label">Github</span>
+                  <span className="label">GitHub</span>
                 </div>
                 <div className="right">
                   <span className="detail">@wnzid</span>
@@ -312,8 +346,8 @@ function TempDisplay(){
         const json = await res.json();
         const t = json?.current_weather?.temperature;
         if (mounted && typeof t === 'number') setC(Math.round(t));
-      } catch (e: any) {
-        if (mounted) setErr(e?.message || 'Weather fetch failed');
+      } catch (error: unknown) {
+        if (mounted) setErr(error instanceof Error ? error.message : 'Weather fetch failed');
       } finally {
         if (mounted) setLoading(false);
       }
@@ -345,7 +379,7 @@ function TempDisplay(){
           }
         }
         throw new Error('IP lookup failed');
-      } catch (e: any) {
+      } catch {
         if (mounted) {
           setErr('Unable to determine location');
           setLoading(false);
@@ -371,9 +405,8 @@ function TempDisplay(){
 }
 
 function LiveClock(){
-  const [now, setNow] = useState<Date | null>(null);
+  const [now, setNow] = useState<Date>(() => new Date());
   useEffect(() => {
-    setNow(new Date());
     const t = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(t);
   }, []);

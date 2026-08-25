@@ -14,8 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Wnzid",
-  description: "Personal website of Md Nahidul Islam",
+  title: "Md Nahidul Islam | Software Engineer",
+  description:
+    "Portfolio of Md Nahidul Islam, a Software Engineering student at Vilnius University and Junior Software Engineer working across web development, automation, robotics and data-driven systems.",
 };
 
 export default function RootLayout({
