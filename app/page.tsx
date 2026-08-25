@@ -7,6 +7,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import { XIcon, ExternalIcon } from "../components/Icons";
+import { useForm, ValidationError } from "@formspree/react";
 
 function TiltIcon({ children }: { children: React.ReactNode }) {
   return (
@@ -19,13 +20,8 @@ function TiltIcon({ children }: { children: React.ReactNode }) {
 export default function Home() {
   const [dark, setDark] = useState<boolean>(false);
   const [mounted, setMounted] = useState(false);
-  const [sending, setSending] = useState(false);
-  const [sent, setSent] = useState(false);
   const nameRef = useRef<HTMLInputElement | null>(null);
-
-
-
-  
+  const [formState, formspreeSubmit] = useForm("mzepljkz");
 
   useEffect(() => {
     if (dark) document.documentElement.classList.add("dark");
@@ -71,56 +67,33 @@ export default function Home() {
     },
   ];
 
-  async function handleSubmit(e?: React.FormEvent) {
-    e?.preventDefault();
-    const form = (e?.currentTarget as HTMLFormElement) || document.getElementById('contact-form') as HTMLFormElement;
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    const form = e.currentTarget;
     const fd = new FormData(form);
-    const name = String(fd.get('name') || '').trim();
-    const email = String(fd.get('email') || '').trim();
-    const message = String(fd.get('message') || '').trim();
-    const company = String(fd.get('company') || '').trim();
+    const name = String(fd.get("name") || "").trim();
+    const email = String(fd.get("email") || "").trim();
+    const message = String(fd.get("message") || "").trim();
+    const company = String(fd.get("company") || "").trim();
 
     if (company) {
-      alert('Spam detected');
       return;
     }
 
-    if (!name || !email) {
-      alert('Please provide name and email.');
+    if (!name || !email || !message) {
+      alert("Please fill in all fields.");
       return;
     }
 
     if (!/^[^@]+@[^@]+\.[^@]+$/.test(email)) {
-      alert('Please provide a valid email.');
+      alert("Please provide a valid email.");
       return;
     }
 
-    setSending(true);
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message, company }),
-      });
-
-      const data = await res.json().catch(() => ({}));
-      setSending(false);
-
-      if (!res.ok) {
-        console.error('Contact error:', data);
-        alert(data.error || 'Failed');
-        return;
-      }
-
-      setSent(true);
-      form.reset();
-      nameRef.current?.focus();
-      setTimeout(() => setSent(false), 4000);
-    } catch (err) {
-      setSending(false);
-      console.error('Submit error', err);
-      alert('Failed to send message. Please try again later.');
-    }
+    await formspreeSubmit(e);
+    form.reset();
+    nameRef.current?.focus();
   }
 
   return (
@@ -247,17 +220,19 @@ export default function Home() {
             </div>
             <div className="mt-3">
               <label className="text-xs text-gray-600 block mb-1" htmlFor="message">Message</label>
-              <textarea id="message" name="message" rows={4} className="w-full bg-input-bg border border-button-bg placeholder-subdued text-body-md text-default max-h-80 min-h-52 rounded-[10px] px-3 py-2.5 soft-focus" onKeyDown={(e)=>{ if(e.key==='Enter' && (e.metaKey || e.ctrlKey)){ e.preventDefault(); handleSubmit(); } }} />
+              <textarea id="message" name="message" rows={4} className="w-full bg-input-bg border border-button-bg placeholder-subdued text-body-md text-default max-h-80 min-h-52 rounded-[10px] px-3 py-2.5 soft-focus" onKeyDown={(e)=>{ if(e.key==='Enter' && (e.metaKey || e.ctrlKey)){ e.preventDefault(); void handleSubmit(e as unknown as React.FormEvent<HTMLFormElement>); } }} />
+              <ValidationError prefix="Message" field="message" errors={formState.errors} />
             </div>
             <div className="mt-4 flex items-center justify-between">
               <div>
-                <button type="submit" disabled={sending} className="px-4 py-2 bg-black text-white rounded-full text-sm">
-                  {sending ? 'Sending...' : 'Send message'}
+                <button type="submit" disabled={formState.submitting} className="px-4 py-2 bg-black text-white rounded-full text-sm">
+                  {formState.submitting ? 'Sending...' : 'Send message'}
                 </button>
-                {sent && <span className="ml-3 text-sm text-green-600">Message sent</span>}
+                {formState.succeeded && <span className="ml-3 text-sm text-green-600">Message sent</span>}
               </div>
               <div className="text-sm text-gray-500">or Enter to send</div>
             </div>
+            <ValidationError prefix="Email" field="email" errors={formState.errors} />
           </form>
         </section>
 
