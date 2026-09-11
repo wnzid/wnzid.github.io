@@ -1,37 +1,39 @@
-import React from 'react';
+import type { SVGProps } from "react";
 
-export const EmailIcon: React.FC<{className?:string}> = ({className}) => (
-  <svg className={className} width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-    <path d="M3 8.5v7A2.5 2.5 0 005.5 18h13A2.5 2.5 0 0021 15.5v-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M21 7.5L12 13 3 7.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-);
+type IconProps = SVGProps<SVGSVGElement>;
 
-export const GithubIcon: React.FC<{className?:string}> = ({className}) => (
-  <svg className={className} width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-    <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.867 8.167 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.342-3.369-1.342-.455-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.607.069-.607 1.004.071 1.532 1.032 1.532 1.032.893 1.53 2.341 1.088 2.91.833.091-.647.35-1.088.636-1.339-2.22-.252-4.555-1.11-4.555-4.944 0-1.091.39-1.984 1.029-2.681-.103-.253-.446-1.27.098-2.646 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.748-1.025 2.748-1.025.546 1.376.203 2.393.1 2.646.64.697 1.028 1.59 1.028 2.681 0 3.842-2.338 4.688-4.566 4.936.359.31.679.923.679 1.861 0 1.343-.012 2.426-.012 2.756 0 .269.18.58.688.482C19.135 20.165 22 16.417 22 12c0-5.523-4.477-10-10-10z" fill="currentColor"/>
-  </svg>
-);
+export function ArrowUpRightIcon(props: IconProps) {
+  return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+}
 
-export const LinkedinIcon: React.FC<{className?:string}> = ({className}) => (
-  <svg className={className} width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-    <rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" strokeWidth="1.25" />
-    <path d="M7 10v7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    <circle cx="7" cy="7" r="1.2" fill="currentColor" />
-    <path d="M11 10v7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-  </svg>
-);
+export function DownloadIcon(props: IconProps) {
+  return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 20h14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+}
 
-export const XIcon: React.FC<{className?:string}> = ({className}) => (
-  <svg className={className} width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-    <path d="M3 3l18 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    <path d="M21 3L3 21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-  </svg>
-);
+export function DocumentIcon(props: IconProps) {
+  return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}><path d="M6.5 3.5h7l4 4v13h-11v-17Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" /><path d="M13.5 3.5v4h4M9.5 12h5M9.5 15.5h5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+}
 
-export const ExternalIcon: React.FC<{className?:string}> = ({className}) => (
-  <svg className={className} width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-    <path d="M14 3h7v7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M10 14L21 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-);
+export function MailIcon(props: IconProps) {
+  return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}><rect x="3" y="5.5" width="18" height="13" rx="2" stroke="currentColor" strokeWidth="1.7" /><path d="m4.5 7 7.5 6 7.5-6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+}
+
+export function GitHubIcon(props: IconProps) {
+  return <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .08 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.84.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03a9.55 9.55 0 0 1 5 0c1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.39.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86l-.01 2.76c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" /></svg>;
+}
+
+export function LinkedInIcon(props: IconProps) {
+  return <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}><path d="M5.3 3.5A1.8 1.8 0 1 0 5.3 7a1.8 1.8 0 0 0 0-3.5ZM3.8 8.6h3v11.1h-3V8.6Zm5 0h2.9v1.5h.04c.4-.77 1.4-1.89 3.55-1.89 3.8 0 4.5 2.5 4.5 5.75v5.74h-3v-5.09c0-1.21-.02-2.78-1.7-2.78-1.69 0-1.95 1.32-1.95 2.69v5.18h-3V8.6Z" /></svg>;
+}
+
+export function SunIcon(props: IconProps) {
+  return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}><circle cx="12" cy="12" r="3.6" stroke="currentColor" strokeWidth="1.7" /><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" /></svg>;
+}
+
+export function MoonIcon(props: IconProps) {
+  return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}><path d="M20 15.2A8.5 8.5 0 0 1 8.8 4a8.5 8.5 0 1 0 11.2 11.2Z" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+}
+
+export function CheckBadgeIcon(props: IconProps) {
+  return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}><path d="m12 2 2.1 1.6 2.7-.2.9 2.5 2.3 1.5-.7 2.6.7 2.6-2.3 1.5-.9 2.5-2.7-.2L12 22l-2.1-1.6-2.7.2-.9-2.5L4 16.6l.7-2.6L4 11.4l2.3-1.5.9-2.5 2.7.2L12 2Z" fill="currentColor" /><path d="m8.8 12 2.1 2.1 4.5-4.6" stroke="var(--bg)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+}
