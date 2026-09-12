@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 import { ArrowUpRightIcon } from "./Icons";
 
-const reportPath = "/documents/skin-disease-classification-report.pdf";
+const reportPath = "/documents/skin-disease-classification-report0.pdf";
 const reportPages = Array.from({ length: 17 }, (_, index) => index + 1);
 
 export function ReportModal() {
