@@ -1,55 +1,68 @@
-# Md Nahidul Islam | Portfolio
+<div align="center">
 
-A recruiter-focused portfolio for [wnzid.github.io](https://wnzid.github.io/), built with Next.js, TypeScript, and hand-authored CSS.
+# Md Nahidul Islam — Portfolio
 
-The site presents six projects selected for engineering range, practical value, and credible evidence:
+**A compact, evidence-led software engineering portfolio.**
 
-- **Currency Pulse**: visually led live exchange-rate product with scheduled data collection
-- **Robot Cell Optimizer**: ROS 2 and MoveIt 2 industrial-cell analysis platform
-- **RAQI**: production-oriented commerce architecture
-- **Skin Disease Classification**: University of Graz applied-AI study with its complete report
-- **MediEase**: role-aware healthcare HCI prototype
-- **JTrack**: Flask analytics dashboard and Excel-to-SQLite data pipeline
+[View the live site](https://wnzid.github.io/) · `Next.js` · `TypeScript` · `Static export`
+
+</div>
+
+The site presents selected work across product engineering, data systems, applied machine learning, robotics, and human–computer interaction. It is built for quick recruiter scanning while keeping reports, repositories, and technical context close at hand.
+
+## Featured work
+
+- **Currency Pulse** — scheduled exchange-rate collection and visualization
+- **Robot Cell Optimizer** — ROS 2 and MoveIt 2 workcell analysis
+- **RAQI** — production-oriented commerce architecture
+- **Skin Disease Classification** — applied-AI study with the complete report
+- **MediEase** — role-aware healthcare HCI prototype
+- **JTrack** — student-operations reporting and Excel-to-SQLite ETL
+
+## Experience principles
+
+- Typography-led responsive layout from phone to wide desktop
+- High-contrast light and dark themes with saved preference
+- Semantic sections, skip navigation, visible focus, and reduced motion
+- Evidence-first project presentation with a lazy in-page report reader
+- Repository-backed technology mix refreshed on a schedule
+- No geolocation or IP-based location requests
 
 ## Local development
 
-Use Node.js 20 or newer.
+Node.js 20 or newer is required.
 
 ```bash
 npm ci
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open `http://localhost:3000`.
 
-## Quality checks
+## Verification
 
 ```bash
 npm run check
 ```
 
-This runs linting, TypeScript validation, and the production build. The build exports a static site to `out/` for GitHub Pages.
+The combined check runs ESLint, TypeScript validation, and a production build. The final static site is written to `out/`.
 
-## Design and accessibility
+## Project map
 
-- The original compact, typography-led design with fluid scaling for large and 4K displays
-- High-contrast light and dark themes with saved user preference
-- Responsive layouts tested from phone to wide desktop
-- Semantic sections, visible keyboard focus, skip navigation, and reduced-motion support
-- One real-product feature panel, a compact supporting project grid, restrained institutional logos, and subtle logo motion
-- Repository-backed language mix refreshed automatically on the 1st, 8th, 15th, and 22nd of each month
-- Lazy in-page report reader that avoids browser download-manager interception, with a direct PDF-file fallback
-- No geolocation or IP-based location requests
-
-## Project structure
-
-- `app/page.tsx`: content and page structure
-- `app/globals.css`: design system, themes, and responsive behavior
-- `components/`: theme, contact, report-viewer, and inline-icon interactions
-- `public/documents/`: the downloadable CV and skin-disease study report
-- `public/logos/`: employer and university identity assets
-- `app/robots.ts` and `app/sitemap.ts`: search-engine discovery
+```text
+app/page.tsx          Portfolio content and page structure
+app/globals.css       Design system, themes, and responsive behavior
+components/           Theme, contact, report, and icon interactions
+data/                 Project and stack content
+public/documents/     CV and project report
+public/logos/         Institutional and project identity assets
+scripts/              GitHub language-profile refresh
+```
 
 ## Deployment
 
-Pushes to `main` run the GitHub Actions workflow in `.github/workflows/deploy.yml`. The workflow validates the site, creates the static export, and deploys it to GitHub Pages.
+Pushes to `main` validate and deploy the static export through GitHub Actions. A scheduled run on the 1st, 8th, 15th, and 22nd refreshes the repository-backed language profile before publishing.
+
+## License
+
+No license is currently declared. All rights are reserved by default.
